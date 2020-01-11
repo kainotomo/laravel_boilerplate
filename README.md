@@ -7,7 +7,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Installation
+https://docs.spatie.be/laravel-permission/v3/introduction/
+https://laravel.com/docs/6.x/socialite
+https://laravel.com/docs/6.x/billing
+
+composer install
+npm install
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan ui vue --auth
+php artisan migrate
+php artisan db:seed
+
+## About Laravel Boilerplate
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
