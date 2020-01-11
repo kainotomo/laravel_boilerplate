@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+    
+    // Only authenticated users may enter...
+    Route::get('/', 'HomeController@index')->name('home');
+    
+    Route::group(['middleware' => ['verified']], function () {
+        Route::get('/profile', 'HomeController@index')->name('profile');   
+    });
+});

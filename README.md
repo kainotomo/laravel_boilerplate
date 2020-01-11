@@ -15,7 +15,10 @@ https://laravel.com/docs/6.x/billing
 composer install
 npm install
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+composer require laravel/ui --dev
+php artisan ui bootstrap --auth
 php artisan ui vue --auth
+php artisan ui react --auth
 php artisan migrate
 php artisan db:seed
 
