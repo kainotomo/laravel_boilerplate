@@ -17,12 +17,19 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'permission:view']], function () {
     
     // Only authenticated users may enter...
     Route::get('/', 'HomeController@index')->name('home');
     
     Route::group(['middleware' => ['verified']], function () {
+        // Only verified users may enter...
         Route::get('/profile', 'HomeController@index')->name('profile');   
     });
+    
 });
+  
+Route::group(['namespace' => 'Administrator', 'prefix' => 'administrator', 'middleware' => ['permission:administrator']], function () {
+        // Only administrator users may enter...
+        Route::get('/', 'HomeController@index')->name('administrator');   
+    });
