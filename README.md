@@ -12,6 +12,8 @@ https://docs.spatie.be/laravel-permission/v3/introduction/
 https://laravel.com/docs/6.x/socialite
 https://laravel.com/docs/6.x/billing
 
+admin user name in etc file. Password: Administr@tor
+
 composer install
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 composer require laravel/ui --dev
