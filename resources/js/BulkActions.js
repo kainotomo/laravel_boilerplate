@@ -23,7 +23,7 @@ function handleBulkAction($action) {
         $('#bulk-' + $action).modal('show');
     } else {
         $('#bulk-select-all').prop('checked', false);
-        alert('There\'s nothing to ' + $action + '. Please select members you want to' + $action + '.');
+        alert('There\'s nothing to ' + $action + '. Please select members you want to ' + $action + '.');
     }
 }
 

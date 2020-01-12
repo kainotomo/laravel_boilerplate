@@ -39,4 +39,6 @@ Route::group(['namespace' => 'Administrator', 'prefix' => 'administrator', 'midd
         Route::get('/users', 'UserController@index')->name('administrator.users');
         Route::post('/users', 'UserController@index')->name('administrator.users');
         Route::get('/users/delete', 'UserController@delete')->name('administrator.users.delete');
+        Route::get('/users/{user}/edit', 'UserController@edit')->name('administrator.users.edit');
+        Route::post('/users/{user}/update', 'UserController@update')->name('administrator.users.update');
     });

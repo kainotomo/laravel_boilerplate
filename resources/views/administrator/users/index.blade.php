@@ -8,7 +8,7 @@
             <form action="{{route('administrator.users')}}" method="post">
                 @csrf
 
-                <div class="row mb-3">
+                <div class="row mb-1">
                     <div class="col">
                         <input type="text" class="form-control" id=search value="{{ request('search', null) }}" name="search" placeholder="Search...">
                     </div>
@@ -23,7 +23,7 @@
                 ])->links() }}     
             </form>
 
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
                     <button type="button" id="btn-bulk-delete" class="btn btn-danger">Delete</button>
                     <button type="button" class="btn btn-secondary">2</button>
@@ -68,7 +68,7 @@
                                 <td>
                                     <input type="checkbox" class="bulk-select">
                                 </td>
-                                <td>{{ $user->name }}</td>
+                                <td><a href="{{ route('administrator.users.edit', ['user' => $user]) }}">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>
