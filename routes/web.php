@@ -35,5 +35,8 @@ Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' 
   
 Route::group(['namespace' => 'Administrator', 'prefix' => 'administrator', 'middleware' => ['permission:administrator']], function () {
         // Only administrator users may enter...
-        Route::get('/', 'HomeController@index')->name('administrator');   
+        Route::get('/', 'HomeController@index')->name('administrator');
+        Route::get('/users', 'UserController@index')->name('administrator.users');
+        Route::post('/users', 'UserController@index')->name('administrator.users');
+        Route::get('/users/delete', 'UserController@delete')->name('administrator.users.delete');
     });

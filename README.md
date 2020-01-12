@@ -19,6 +19,7 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 composer require laravel/ui --dev
 php artisan ui bootstrap --auth or php artisan ui vue --auth or php artisan ui react --auth
 npm install
+php artisan session:table
 php artisan migrate
 php artisan db:seed
 

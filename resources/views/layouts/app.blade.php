@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/165d7b9c13.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <div id="app">
@@ -35,7 +39,10 @@
                     <ul class="navbar-nav mr-auto">
                         @can('administrator')
                             <li class="nav-item">
-                                <a class="nav-link" href="administrator">Administrator</a>
+                                <a class="nav-link" href="{{ route('administrator') }}">Administrator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('administrator.users') }}">Users</a>
                             </li>
                         @endcan
                     </ul>
