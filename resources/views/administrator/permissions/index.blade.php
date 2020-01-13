@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form action="{{route('administrator.users')}}" method="post">
+            <form action="{{route('administrator.permissions')}}" method="post">
                 @csrf
 
                 <div class="row mb-1">
@@ -22,57 +22,38 @@
                             <select class="custom-select" id="role_name" name="role_name" onchange="this.form.submit()">
                                 <option value="0"> - {{ __('All') }} - </option>
                                 @foreach ($roles as $key => $role)
-                                <option value="{{$key}}" {{ request('role_name', null) == $key ? 'selected' : '' }}>{{$role}}</option>
+                                <option value="{{$role}}" {{ request('role_name', null) == $role ? 'selected' : '' }}>{{$role}}</option>
                                 @endforeach                            
                             </select>
                         </div>
                     </div>
                     
                     <div class="col">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="show_trashed">{{ __('Trashed') }}</label>
-                            </div>
-                            <select class="custom-select" id="show_trashed" name="show_trashed" onchange="this.form.submit()">
-                                <option value="0">{{ __('No') }}</option>
-                                <option value="1" {{ request('show_trashed', null) == 1 ? 'selected' : '' }}>{{ __('Yes') }}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col">
                         <button id="goBtn" name="goBtn" class="btn btn-primary">Go</button>
                         <button id="clearBtn" name="clearBtn" class="btn" onclick="$('#search').val('');">Clear</button>
                     </div>
                 </div>
 
-                {{ $users->appends([
+                {{ $permissions->appends([
                     'search' => request('search', null),
                 ])->links() }}     
             </form>
 
-            <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">                    
-                    <a type="button" class="btn btn-success" href="{{ route('administrator.users.create') }}">{{ __('New') }}</a>
+            <div class="btn-toolbar mb-1" permission="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" permission="group" aria-label="First group">                    
+                    <a type="button" class="btn btn-success" href="{{ route('administrator.permissions.create') }}">{{ __('New') }}</a>
                 </div>
-                @if (request('show_trashed', null) == 0)
-                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                    <button type="button" id="btn-bulk-trash" class="btn btn-danger">{{ __('Trash') }}</button>
+                <div class="btn-group mr-2" permission="group" aria-label="Second group">
+                    <button type="button" id="btn-bulk-delete" class="btn btn-danger">{{ __('Delete') }}</button>
                 </div>
-                @else
-                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                    <button type="button" id="btn-bulk-restore" class="btn btn-primary">{{ __('Restore') }}</button>
-                    <button type="button" id="btn-bulk-delete" class="btn btn-danger">{{ __('Permanently Delete') }}</button>
-                </div>
-                @endif
             </div>
 
             <div class="card">
-                <div class="card-header">Users</div>
+                <div class="card-header">Permissions</div>
 
                 <div class="card-body">
                     @if (session('status'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success" permission="alert">
                         {{ session('status') }}
                     </div>
                     @endif
@@ -84,22 +65,20 @@
                                     <input type="checkbox" id="bulk-select-all">
                                 </th>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Created At</th>
+                                <th>Guard</th>
                                 <th>Roles</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
-                            <tr data-id="{{ $user->id }}">
+                            @foreach ($permissions as $permission)
+                            <tr data-id="{{ $permission->id }}">
                                 <td>
                                     <input type="checkbox" class="bulk-select">
                                 </td>
-                                <td><a href="{{ route('administrator.users.edit', ['user' => $user]) }}">{{ $user->name }}</a></td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at }}</td>
+                                <td><a href="{{ route('administrator.permissions.edit', ['permission' => $permission]) }}">{{ $permission->name }}</a></td>
+                                <td>{{ $permission->guard_name }}</td>
                                 <td>
-                                    @foreach ($user->roles as $role)
+                                    @foreach ($permission->roles as $role)
                                     {{ $role->name }}<br/>
                                     @endforeach
                                 </td>
@@ -109,11 +88,12 @@
                     </table>
                 </div>
             </div>
+            
         </div>
     </div>
 
     @component('components.modal_bulk')
-    users
+    permissions
     @endcomponent
 
 </div>

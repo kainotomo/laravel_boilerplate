@@ -103,7 +103,7 @@ class UserController extends Controller
         
         if ($request->save_close)
         {
-            return redirect()->route('administrator.users');
+            return redirect()->route('administrator.users')->withSuccess("Item successfully saved.");
         }
         return redirect()->route('administrator.users.edit', $user)->withSuccess("Item successfully saved.");
     }
@@ -160,7 +160,7 @@ class UserController extends Controller
         
         if ($request->save_close)
         {
-            return redirect()->route('administrator.users');
+            return redirect()->route('administrator.users')->withSuccess("Item successfully saved.");
         }
         return back()->withSuccess("Item successfully saved.");
     }

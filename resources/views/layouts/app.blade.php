@@ -46,6 +46,12 @@
                                     <a class="dropdown-item" href="{{ route('administrator.users') }}">
                                         {{ __('Users') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('administrator.roles') }}">
+                                        {{ __('Roles') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('administrator.permissions') }}">
+                                        {{ __('Permissions') }}
+                                    </a>
                                 </div>
                             </li>
                             @endcan
