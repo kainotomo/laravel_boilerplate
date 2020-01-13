@@ -49545,20 +49545,24 @@ function handleBulkAction($action) {
     $('#bulk-' + $action).modal('show');
   } else {
     $('#bulk-select-all').prop('checked', false);
-    alert('There\'s nothing to ' + $action + '. Please select members you want to' + $action + '.');
+    alert('There\'s nothing to ' + $action + '. Please select members you want to ' + $action + '.');
   }
-} // BULK ACTION: Ban members
+} // BULK ACTION: Trash items
 
 
-$('#btn-bulk-ban').click(function (e) {
-  handleBulkAction('ban');
-}); // BULK ACTION: Delete members
+$('#btn-bulk-trash').click(function (e) {
+  handleBulkAction('trash');
+}); // BULK ACTION: Delete items
 
 $('#btn-bulk-delete').click(function (e) {
   handleBulkAction('delete');
+}); // BULK ACTION: Restore items
+
+$('#btn-bulk-restore').click(function (e) {
+  handleBulkAction('restore');
 }); // When modal closes - uncheck all checkboxes
 
-$('#bulk-ban, #bulk-delete').each(function () {
+$('#bulk-trash, #bulk-delete, #bulk-restore').each(function () {
   $(this).on('hidden.bs.modal', function (e) {
     $('#bulk-select-all').prop('checked', false);
     $('input.bulk-select').prop('checked', false);

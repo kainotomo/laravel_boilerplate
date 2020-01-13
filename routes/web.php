@@ -43,6 +43,8 @@ Route::group(['namespace' => 'Administrator', 'prefix' => 'administrator', 'midd
         Route::get('/{user}/edit', 'UserController@edit')->name('administrator.users.edit');
         Route::post('/save', 'UserController@save')->name('administrator.users.save');
         Route::post('/{user}/update', 'UserController@update')->name('administrator.users.update');
+        Route::get('/trash', 'UserController@trash')->name('administrator.users.trash');
         Route::get('/delete', 'UserController@delete')->name('administrator.users.delete');
+        Route::get('/restore', 'UserController@restore')->name('administrator.users.restore');
     });
 });

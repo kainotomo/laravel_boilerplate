@@ -17,13 +17,25 @@
                     <div class="col">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">{{ __('Role') }}</label>
+                                <label class="input-group-text" for="role_name">{{ __('Role') }}</label>
                             </div>
                             <select class="custom-select" id="role_name" name="role_name" onchange="this.form.submit()">
                                 <option value="0"> - {{ __('All') }} - </option>
                                 @foreach ($roles as $key => $role)
                                 <option value="{{$key}}" {{ request('role_name', null) == $key ? 'selected' : '' }}>{{$role}}</option>
                                 @endforeach                            
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="show_trashed">{{ __('Trashed') }}</label>
+                            </div>
+                            <select class="custom-select" id="show_trashed" name="show_trashed" onchange="this.form.submit()">
+                                <option value="0">{{ __('No') }}</option>
+                                <option value="1" {{ request('show_trashed', null) == 1 ? 'selected' : '' }}>{{ __('Yes') }}</option>
                             </select>
                         </div>
                     </div>
@@ -43,9 +55,16 @@
                 <div class="btn-group mr-2" role="group" aria-label="First group">                    
                     <a type="button" class="btn btn-success" href="{{ route('administrator.users.create') }}">{{ __('New') }}</a>
                 </div>
+                @if (request('show_trashed', null) == 0)
                 <div class="btn-group mr-2" role="group" aria-label="Second group">
-                    <button type="button" id="btn-bulk-delete" class="btn btn-danger">{{ __('Delete') }}</button>
+                    <button type="button" id="btn-bulk-trash" class="btn btn-danger">{{ __('Trash') }}</button>
                 </div>
+                @else
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <button type="button" id="btn-bulk-restore" class="btn btn-primary">{{ __('Restore') }}</button>
+                    <button type="button" id="btn-bulk-delete" class="btn btn-danger">{{ __('Permanently Delete') }}</button>
+                </div>
+                @endif
             </div>
 
             <div class="card">
@@ -93,7 +112,7 @@
         </div>
     </div>
 
-    @component('components.modal_bulk_delete')
+    @component('components.modal_bulk')
     @endcomponent
 
 </div>

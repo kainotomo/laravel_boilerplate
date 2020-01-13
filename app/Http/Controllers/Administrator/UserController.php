@@ -30,6 +30,9 @@ class UserController extends Controller
         {
             $query->role($request->role_name);
         }
+        if ($request->show_trashed) {
+            $query->onlyTrashed();
+        }
         $users = $query->paginate();
         $roles = Role::pluck('name', 'id');
         return view('administrator/users/index', ['users' => $users, 'roles' => $roles]);
@@ -163,6 +166,24 @@ class UserController extends Controller
     }
     
     /**
+     * Trash selected items
+     * 
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     * 
+     * @param Request $request
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function trash(Request $request)
+    {
+        $user_ids = explode(',', $request->bulk_ids);
+        foreach ($user_ids as $user_id) {
+            User::find($user_id)->delete();
+        }
+        
+        return back()->withSuccess("Items successfully trashed.");
+    }
+    
+    /**
      * Delete selected items
      * 
      * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
@@ -174,7 +195,25 @@ class UserController extends Controller
     {
         $user_ids = explode(',', $request->bulk_ids);
         foreach ($user_ids as $user_id) {
-            User::find($user_id)->delete();
+            User::onlyTrashed()->find($user_id)->forceDelete();
+        }
+        
+        return back()->withSuccess("Items successfully deleted.");
+    }
+    
+    /**
+     * Restore selected items
+     * 
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     * 
+     * @param Request $request
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function restore(Request $request)
+    {
+        $user_ids = explode(',', $request->bulk_ids);
+        foreach ($user_ids as $user_id) {
+            User::onlyTrashed()->find($user_id)->restore();
         }
         
         return back()->withSuccess("Items successfully deleted.");
