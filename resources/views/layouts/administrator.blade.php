@@ -37,10 +37,24 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('administrator') }}">Administrator</a>
                             </li>
-                            @endcan
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('Manage') }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('administrator.users') }}">
+                                        {{ __('Users') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('administrator.roles') }}">
+                                        {{ __('Roles') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('administrator.permissions') }}">
+                                        {{ __('Permissions') }}
+                                    </a>
+                                </div>
                             </li>
+                            @endcan
                         </ul>
 
                         <!-- Right Side Of Navbar -->
@@ -55,7 +69,10 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                             @endif
-                            @else                            
+                            @else    
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Front') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
