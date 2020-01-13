@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class UserController extends Controller
@@ -25,12 +26,30 @@ class UserController extends Controller
             $query->where('name', 'LIKE', '%' . $request->search . '%')
                 ->orWhere('email', 'LIKE', '%' . $request->search . '%');
         }
+        if ($request->role_name)
+        {
+            $query->role($request->role_name);
+        }
         $users = $query->paginate();
-        return view('administrator/users/index', ['users' => $users]);
+        $roles = Role::pluck('name', 'id');
+        return view('administrator/users/index', ['users' => $users, 'roles' => $roles]);
     }
     
     /**
-     * Edit user
+     * Create new item
+     * 
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function create()
+    {
+        $roles = Role::pluck('name', 'id');
+        return view('administrator/users/create', ['roles' => $roles]);
+    }
+    
+    /**
+     * Edit item
      * 
      * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
      * 
@@ -44,6 +63,48 @@ class UserController extends Controller
     }
     
     /**
+     * Save new item
+     * 
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     * 
+     * @param Request $request
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function save(Request $request)
+    {                
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|string|min:8|max:255|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $data = $request->only(['name', 'email']);
+        $data['password'] = Hash::make($request->password);
+        $user = User::create($data);
+        
+        //assign new roles
+        $roles = Role::get();
+        foreach ($roles as $role) {
+            $roleId = 'role_' . $role->id;
+            if ($request->{$roleId})
+            {
+                $user->assignRole($role->name);
+            }
+        }  
+        
+        return redirect()->route('administrator.users');
+    }
+    
+    /**
+     * Update item
+     * 
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
      * 
      * @param Request $request
      * @param User $user

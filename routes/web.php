@@ -37,8 +37,10 @@ Route::group(['namespace' => 'Administrator', 'prefix' => 'administrator', 'midd
         // Only administrator users may enter...
         Route::get('/', 'HomeController@index')->name('administrator');
         Route::get('/users', 'UserController@index')->name('administrator.users');
-        Route::post('/users', 'UserController@index')->name('administrator.users');
-        Route::get('/users/delete', 'UserController@delete')->name('administrator.users.delete');
+        Route::post('/users', 'UserController@index')->name('administrator.users');        
+        Route::get('/users/create', 'UserController@create')->name('administrator.users.create');
         Route::get('/users/{user}/edit', 'UserController@edit')->name('administrator.users.edit');
+        Route::post('/users/save', 'UserController@save')->name('administrator.users.save');
         Route::post('/users/{user}/update', 'UserController@update')->name('administrator.users.update');
+        Route::get('/users/delete', 'UserController@delete')->name('administrator.users.delete');
     });

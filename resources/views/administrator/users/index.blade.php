@@ -9,9 +9,25 @@
                 @csrf
 
                 <div class="row mb-1">
+
                     <div class="col">
                         <input type="text" class="form-control" id=search value="{{ request('search', null) }}" name="search" placeholder="Search...">
                     </div>
+
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">{{ __('Role') }}</label>
+                            </div>
+                            <select class="custom-select" id="role_name" name="role_name" onchange="this.form.submit()">
+                                <option value="0"> - {{ __('All') }} - </option>
+                                @foreach ($roles as $key => $role)
+                                <option value="{{$key}}" {{ request('role_name', null) == $key ? 'selected' : '' }}>{{$role}}</option>
+                                @endforeach                            
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="col">
                         <button id="goBtn" name="goBtn" class="btn btn-primary">Go</button>
                         <button id="clearBtn" name="clearBtn" class="btn" onclick="$('#search').val('');">Clear</button>
@@ -24,19 +40,11 @@
             </form>
 
             <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button type="button" id="btn-bulk-delete" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary">2</button>
-                    <button type="button" class="btn btn-secondary">3</button>
-                    <button type="button" class="btn btn-secondary">4</button>
+                <div class="btn-group mr-2" role="group" aria-label="First group">                    
+                    <a type="button" class="btn btn-success" href="{{ route('administrator.users.create') }}">{{ __('New') }}</a>
                 </div>
                 <div class="btn-group mr-2" role="group" aria-label="Second group">
-                    <button type="button" class="btn btn-secondary">5</button>
-                    <button type="button" class="btn btn-secondary">6</button>
-                    <button type="button" class="btn btn-secondary">7</button>
-                </div>
-                <div class="btn-group" role="group" aria-label="Third group">
-                    <button type="button" class="btn btn-secondary">8</button>
+                    <button type="button" id="btn-bulk-delete" class="btn btn-danger">{{ __('Delete') }}</button>
                 </div>
             </div>
 
@@ -84,37 +92,9 @@
             </div>
         </div>
     </div>
-    
-    {{-- Modal Bulk Delete --}}
-    <div class="modal fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="bulkDeleteMembersModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header clearfix">
-                    <h4 class="modal-title pull-left text-danger" id="bulkDeleteMembersModalLabel">Delete Selected Items</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
 
-                <div class="modal-body">
-                    <p class="alert alert-danger">
-                        Are you sure you want to delete the selected items?
-                    </p>
-                </div>
+    @component('components.modal_bulk_delete')
+    @endcomponent
 
-                <div class="modal-footer">
-                    <form id="frmBulkDeleteMembers" method="get" action="{{ route('administrator.users.delete') }}">
-                        @csrf
-
-                        <div class="d-none" style="display: none">
-                            <input id="delete-bulk_ids" name="bulk_ids" type="text">
-                        </div>
-
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        <button type="submit" class="btn btn-danger btn-ok text-white">Yes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    
 </div>
 @endsection
