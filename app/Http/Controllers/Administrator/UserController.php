@@ -98,7 +98,11 @@ class UserController extends Controller
             }
         }  
         
-        return redirect()->route('administrator.users');
+        if ($request->save_close)
+        {
+            return redirect()->route('administrator.users');
+        }
+        return redirect()->route('administrator.users.edit', $user)->withSuccess("Item successfully saved.");
     }
     
     /**
@@ -151,6 +155,10 @@ class UserController extends Controller
             }
         }
         
+        if ($request->save_close)
+        {
+            return redirect()->route('administrator.users');
+        }
         return back()->withSuccess("Item successfully saved.");
     }
     

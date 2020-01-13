@@ -76,12 +76,16 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary" onclick="$('#save_close').val(1);">
+                                    {{ __('Save & Close') }}
+                                </button>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Save') }}
                                 </button>
                                 <a href="{{ route('administrator.users')}}" class="btn btn-secondary">
                                     {{ __('Close') }}
                                 </a>
+                                <input id="save_close" name="save_close" type="hidden" value="0"/>
                             </div>
                         </div>
 
