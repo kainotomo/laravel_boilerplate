@@ -14,13 +14,14 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $email = env('ADMIN_EMAIL', 'info@kainotomo.com');
+        $email = env('ADMIN_EMAIL', 'admin@admin.com');
+        $password = env('ADMIN_PASSWORD', 'Administr@tor');
         $admin = User::where('email', $email)->first();
         if (!$admin) {
             DB::table('users')->insert([
                 'email'                => $email,
                 'name'                 => 'Super Administrator',
-                'password'             => bcrypt('Administr@tor'),
+                'password'             => bcrypt($password),
                 'created_at'           => date('Y-m-d H:i:s'),
             ]);
             //assign to role
