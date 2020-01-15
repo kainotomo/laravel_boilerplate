@@ -1,5 +1,5 @@
 # Laravel Boilerplate (Current: Laravel 6.*)
-<p align="center"><img src="https://www.kainotomo.com/images/kainotomo-logo.png" width="50">Laravel Boilerplate</p>
+<p align="center"><img src="https://www.kainotomo.com/images/kainotomo-logo.png" width="50">by <a href="https://www.kainotomo.com/">KAINOTOMO PH</a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
