@@ -6,7 +6,11 @@
         "framework",
         "laravel"
     ],
-    "license": "MIT",
+    "homepage": "https://github.com/kainotomo/laravel_boilerplate",
+    "license": "MIT",    
+    "support": {
+        "issues": "https://www.kainotomo.com/contact-us"
+    },
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
