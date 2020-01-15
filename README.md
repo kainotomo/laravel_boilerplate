@@ -3,9 +3,9 @@
 
 <p align="center">
 <a href="https://travis-ci.com/kainotomo/laravel_boilerplate"><img src="https://api.travis-ci.org/kainotomo/laravel_boilerplate.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<a href="https://packagist.org/packages/kainotomo/laravel_boilerplate"><img src="https://poser.pugx.org/kainotomo/laravel_boilerplate/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/kainotomo/laravel_boilerplate"><img src="https://poser.pugx.org/kainotomo/laravel_boilerplate/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/kainotomo/laravel_boilerplate"><img src="https://poser.pugx.org/kainotomo/laravel_boilerplate/license.svg" alt="License"></a>
 </p>
 
 ## Installation
