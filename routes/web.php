@@ -20,6 +20,7 @@ Auth::routes(['verify' => true]);
 Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     // Only authenticated users may enter...
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/stop-impersonate', 'UserController@stopImpersonate')->name('users.stop-impersonate');
 
     Route::group(['middleware' => ['verified']], function () {
         // Only verified users may enter...
@@ -46,6 +47,7 @@ Route::group(['namespace' => 'Administrator', 'prefix' => 'administrator', 'midd
         Route::get('/trash', 'UserController@trash')->name('administrator.users.trash');
         Route::get('/delete', 'UserController@delete')->name('administrator.users.delete');
         Route::get('/restore', 'UserController@restore')->name('administrator.users.restore');
+        Route::get('/{user}/impersonate', 'UserController@impersonate')->name('administrator.users.impersonate');
     });
     
     Route::group(['prefix' => 'roles'], function () {

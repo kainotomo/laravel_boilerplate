@@ -218,4 +218,20 @@ class UserController extends Controller
         
         return back()->withSuccess("Items successfully deleted.");
     }
+    
+    /**
+     * Impersonate user
+     * 
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     * 
+     * @param User $user
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function impersonate(User $user)
+    {
+        session(['impersonate' => auth()->user()->id]);
+        auth()->loginUsingId($user->id);
+        return redirect('dashboard');
+    }
+    
 }

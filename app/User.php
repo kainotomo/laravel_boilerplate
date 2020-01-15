@@ -38,4 +38,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * Check if user is imperonating
+     * 
+     * @author Panayiotis Halouvas <phalouvas@kainotomo.com>
+     * 
+     * @return boolean
+     */
+    public function isImpersonating()
+    {
+        return session()->has('impersonate');
+    }
 }

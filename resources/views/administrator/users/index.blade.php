@@ -87,6 +87,7 @@
                                 <th>Email</th>
                                 <th>Created At</th>
                                 <th>Roles</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,6 +104,7 @@
                                     {{ $role->name }}<br/>
                                     @endforeach
                                 </td>
+                                <td><a href="{{ route('administrator.users.impersonate', ['user' => $user]) }}">{{ __('Impersonate') }}</a></td>
                             </tr>
                             @endforeach
                         </tbody>                        

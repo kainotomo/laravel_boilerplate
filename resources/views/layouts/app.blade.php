@@ -67,10 +67,16 @@
                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    
+                                    @if (Auth::user()->isImpersonating())
+                                    <a class="dropdown-item" href="{{ route('users.stop-impersonate', ['user' => Auth::user()]) }}">
+                                        {{ __('Stop Impersonate') }}
+                                    </a>
+                                    @endif
+                                    
                                 </div>
                             </li>
                             @endguest
