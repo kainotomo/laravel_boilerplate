@@ -36,7 +36,6 @@ Laravel Boilerplate is a starting point for a new Laravel application.
 ### Features
 - Account Control System https://docs.spatie.be/laravel-permission/v3/introduction/
 - Oauth login https://laravel.com/docs/6.x/socialite
-- Subsciption system https://laravel.com/docs/6.x/billing
 
 ## Contributing
 
