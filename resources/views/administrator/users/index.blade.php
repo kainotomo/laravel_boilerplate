@@ -104,7 +104,14 @@
                                     {{ $role->name }}<br/>
                                     @endforeach
                                 </td>
-                                <td><a href="{{ route('administrator.users.impersonate', ['user' => $user]) }}">{{ __('Impersonate') }}</a></td>
+                                <td>
+                                    <a href="{{ route('administrator.users.impersonate', ['user' => $user]) }}" 
+                                       class="btn btn-sm btn-warning"
+                                       title="{{ __('Impersonate') }}"
+                                       >
+                                        <i class="fas fa-sign-in-alt"></i>
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>                        
