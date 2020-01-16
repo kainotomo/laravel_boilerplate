@@ -20,7 +20,6 @@ Run below commands:
 
 - `composer install`
 - `npm install`
-- `php artisan session:table`
 - `php artisan migrate`
 - `php artisan db:seed`
 
