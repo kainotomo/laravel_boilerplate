@@ -122,7 +122,7 @@
     </div>
 
     @component('components.modal_bulk')
-    users
+    administrator.users
     @endcomponent
 
 </div>

@@ -14,7 +14,7 @@
             </div>
 
             <div class="modal-footer">
-                <form id="frmBulkTrashMembers" method="get" action="{{ route('administrator.'.$slot.'.trash') }}">
+                <form id="frmBulkTrashMembers" method="get" action="{{ route($slot.'.trash') }}">
                     @csrf
 
                     <div class="d-none" style="display: none">
@@ -45,7 +45,7 @@
             </div>
 
             <div class="modal-footer">
-                <form id="frmBulkDeleteMembers" method="get" action="{{ route('administrator.'.$slot.'.delete') }}">
+                <form id="frmBulkDeleteMembers" method="get" action="{{ route($slot.'.delete') }}">
                     @csrf
 
                     <div class="d-none" style="display: none">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="modal-footer">
-                <form id="frmBulkRestoreMembers" method="get" action="{{ route('administrator.'.$slot.'.restore') }}">
+                <form id="frmBulkRestoreMembers" method="get" action="{{ route($slot.'.restore') }}">
                     @csrf
 
                     <div class="d-none" style="display: none">

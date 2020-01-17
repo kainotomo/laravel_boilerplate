@@ -93,7 +93,7 @@
     </div>
 
     @component('components.modal_bulk')
-    permissions
+    administrator.permissions
     @endcomponent
 
 </div>

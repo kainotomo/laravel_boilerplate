@@ -110,7 +110,7 @@
     </div>
 
     @component('components.modal_bulk')
-    roles
+    administrator.roles
     @endcomponent
 
 </div>
