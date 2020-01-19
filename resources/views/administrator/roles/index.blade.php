@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    @component('components.modal_bulk')
+    @component('components.modal_bulk', ['vars' => []])
     administrator.roles
     @endcomponent
 
